@@ -20,7 +20,7 @@ def main():
 
 def get_users():
     session = db_session.create_session()
-    for i in session.query(User).all():
+    for i in session.query(User).filter(User.address == 'module_1'):
         print(i)
     session.commit()
 
