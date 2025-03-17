@@ -16,7 +16,7 @@ def main():
     # first_job()
     # get_users()
     # add_capitan_2()
-    query_3()
+    # query_3()
     app.run(debug=True)
 
 
