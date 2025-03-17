@@ -1,5 +1,4 @@
 import datetime
-from xmlrpc.client import DateTime
 
 from flask import Flask
 from data import db_session
@@ -11,9 +10,20 @@ app.config['SECRET_KEY'] = 'k0ki4_176'
 
 
 def main():
-    db_session.global_init("db/blogs.db")
-    add_capitan()
-    # app.run()
+    name_db = input()
+    db_session.global_init(name_db)
+    # add_capitan()
+    # first_job()
+    get_users()
+    app.run(debug=True)
+
+
+def get_users():
+    session = db_session.create_session()
+    for i in session.query(User).all():
+        print(i)
+    session.commit()
+
 
 def add_capitan():
     user = User()
@@ -28,6 +38,7 @@ def add_capitan():
     db_sess = db_session.create_session()
     db_sess.add(user)
     db_sess.commit()
+
 
 def first_job():
     job = Jobs()
