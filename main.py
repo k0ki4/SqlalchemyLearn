@@ -14,7 +14,9 @@ def main():
     db_session.global_init(name_db)
     # add_capitan()
     # first_job()
-    get_users()
+    # get_users()
+    # add_capitan_2()
+    query_3()
     app.run(debug=True)
 
 
@@ -32,6 +34,12 @@ def query_2():
         print(us.id)
     session.commit()
 
+def query_3():
+    session = db_session.create_session()
+    for us in session.query(User).filter(User.age < 18):
+        print(f"{us} " + f"{us.age} " + "years")
+    session.commit()
+
 
 def add_capitan():
     user = User()
@@ -43,6 +51,20 @@ def add_capitan():
     user.address = 'module_1'
     user.email = 'scott_chief@mars.org'
     user.hashed_password = 'capitan'
+    db_sess = db_session.create_session()
+    db_sess.add(user)
+    db_sess.commit()
+
+def add_capitan_2():
+    user = User()
+
+    user.surname = "K0k"
+    user.name = "Ridley"
+    user.age = 17
+    user.speciality = "research"
+    user.address = 'module_1'
+    user.email = 'scott_chief@marsian.ru'
+    user.hashed_password = 'bot'
     db_sess = db_session.create_session()
     db_sess.add(user)
     db_sess.commit()
