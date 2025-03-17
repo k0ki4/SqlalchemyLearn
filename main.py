@@ -24,6 +24,14 @@ def get_users():
         print(i)
     session.commit()
 
+def query_2():
+    session = db_session.create_session()
+    for us in session.query(User).filter(User.address == 'module_1',
+                                        'engineer' not in User.speciality,
+                                        'engineer' not in User.position):
+        print(us.id)
+    session.commit()
+
 
 def add_capitan():
     user = User()
